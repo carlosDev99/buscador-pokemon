@@ -6,6 +6,7 @@ import { useState } from 'react'
 export const PokemonBuscador = () => {
     const [buscador, setBuscador] = useState('')
     const [pokemon, setPokemon] = useState('')
+    const [first, setfirst] = useState('')
 
     const Subir=(e)=>{
         e.preventDefault()
@@ -24,12 +25,13 @@ export const PokemonBuscador = () => {
           const data = await response.json()
           console.log(data)
           setPokemon(data)
+          setfirst(data.sprites.back_default)
         } catch (error) {
           console.error('Ha ocurrido un error: ', error)
         }
       }
 
-
+      
   return (
     <div>
         <h1>Buscador de Pokemon</h1>
@@ -45,11 +47,11 @@ export const PokemonBuscador = () => {
     
         </form>
         
-        <div className="movie-list">
+        <div>
             <h2>{pokemon.name}</h2>
-            <img src={pokemon.sprites.back_default} alt={pokemon.name} />
+            <img src={first} alt={pokemon.name} />
             <p>{pokemon.id}</p>
-          </div>
+        </div>
 
     
 
