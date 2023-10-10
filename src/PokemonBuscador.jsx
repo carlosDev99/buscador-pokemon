@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export const PokemonBuscador = () => {
     const [buscador, setBuscador] = useState('')
-    const [Pokemon, setPokemon] = useState('')
+    const [pokemon, setPokemon] = useState('')
 
     const Subir=(e)=>{
         e.preventDefault()
@@ -22,13 +22,13 @@ export const PokemonBuscador = () => {
         try {
           const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${buscador}`)
           const data = await response.json()
-          console.log(data.results)
-          setPokemon(data.results)
+          console.log(data)
+          setPokemon(data)
         } catch (error) {
           console.error('Ha ocurrido un error: ', error)
         }
       }
-      console.log({Pokemon})
+
 
   return (
     <div>
@@ -45,8 +45,14 @@ export const PokemonBuscador = () => {
     
         </form>
         
-        <div>{Pokemon}
-        </div>
+        <div className="movie-list">
+            <h2>{pokemon.name}</h2>
+            <img src={pokemon.sprites.back_default} alt={pokemon.name} />
+            <p>{pokemon.id}</p>
+          </div>
+
+    
+
     </div>
   )
 }
